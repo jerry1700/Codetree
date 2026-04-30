@@ -10,7 +10,7 @@ def rxcy(rc):
     for i in range(n):
         for j in range(n):
             if grid[i][j] == rc:
-                return i, j
+                return i + 1, j + 1
 
 # Please write your code here.
 for _ in range(k):
@@ -34,8 +34,9 @@ for _ in range(k):
             if visited[i][j]:
                 if rc < grid[i][j] < grid[r - 1][c - 1]:
                     rc = grid[i][j]
-
-    r, c = rxcy(rc)
-    r, c = r + 1, c + 1
+    if rc == 0:
+        break
+    else:
+        r, c = rxcy(rc)
 
 print(r, c)
