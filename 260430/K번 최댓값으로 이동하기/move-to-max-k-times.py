@@ -2,12 +2,6 @@ from collections import deque
 
 dxy = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-def target(next_num):
-    for i in range(N):
-        for j in range(N):
-            if board[i][j] == next_num:
-                return i, j
-
 N, K = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
 r, c = map(int, input().split())
@@ -30,11 +24,15 @@ for _ in range(K):
                 visited[nx][ny] = True
                 if board[nx][ny] > next_num:
                     next_num = board[nx][ny]
+                    r, c = nx, ny
+                elif board[nx][ny] == next_num:
+                    if nx < r:
+                        r, c = nx, ny
+                    elif nx == r and ny < c:
+                        r, c = nx, ny
                 deq.append((nx, ny))
 
-    if next_num:
-        r, c = target(next_num)
-    else:
-        r, c = r, c
+    if not next_num:
+        break
 
 print(r + 1, c + 1)
