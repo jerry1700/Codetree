@@ -10,7 +10,7 @@ def rxcy(rc):
     for i in range(n):
         for j in range(n):
             if grid[i][j] == rc:
-                return i + 1, j + 1
+                return i, j
 
 # Please write your code here.
 for _ in range(k):
@@ -36,5 +36,6 @@ for _ in range(k):
                     rc = grid[i][j]
 
     r, c = rxcy(rc)
+    r, c = r + 1, c + 1
 
 print(r, c)
